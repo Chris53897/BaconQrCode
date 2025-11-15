@@ -36,7 +36,7 @@ final class ImagickRenderingTest extends TestCase
         $tempName = tempnam(sys_get_temp_dir(), 'test') . '.png';
         $writer->writeFile('Hello World!', $tempName);
 
-        $this->assertMatchesFileSnapshot($tempName);
+        $this->assertMatchesImageSnapshot($tempName, 0.1, false);
         unlink($tempName);
     }
 
@@ -63,7 +63,7 @@ final class ImagickRenderingTest extends TestCase
         $tempName = tempnam(sys_get_temp_dir(), 'test') . '.png';
         $writer->writeFile('https://apiroad.net/very-long-url', $tempName);
 
-        $this->assertMatchesFileSnapshot($tempName);
+        $this->assertMatchesImageSnapshot($tempName, 0.1, false);
         unlink($tempName);
     }
 
@@ -86,7 +86,7 @@ final class ImagickRenderingTest extends TestCase
         $tempName1 = tempnam(sys_get_temp_dir(), 'test') . '.png';
         $writer1->writeFile('rotation without eye color', $tempName1);
 
-        $this->assertMatchesFileSnapshot($tempName1);
+        $this->assertMatchesImageSnapshot($tempName1, 0.1, false);
         unlink($tempName1);
 
         $eyeFill = new EyeFill(new Rgb(255, 0, 0), new Rgb(0, 255, 0));
